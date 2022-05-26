@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPet", "NPet\NPet.csproj", "{60F1AB01-1A85-4C34-9701-6884E83B35D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petersilie.Petersilie", "Petersilie.Petersilie\Petersilie.Petersilie.csproj", "{C5277D96-C590-4F45-8C4C-8A2D3B72E488}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{60F1AB01-1A85-4C34-9701-6884E83B35D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60F1AB01-1A85-4C34-9701-6884E83B35D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60F1AB01-1A85-4C34-9701-6884E83B35D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60F1AB01-1A85-4C34-9701-6884E83B35D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5277D96-C590-4F45-8C4C-8A2D3B72E488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5277D96-C590-4F45-8C4C-8A2D3B72E488}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5277D96-C590-4F45-8C4C-8A2D3B72E488}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5277D96-C590-4F45-8C4C-8A2D3B72E488}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C3394ECD-389E-480E-92C4-856EFA22C964}
+	EndGlobalSection
+EndGlobal
