@@ -5,7 +5,7 @@ namespace Petersilie.NPet;
 public class PetFile
 {
     private readonly byte[] Contents;
-    public PetHeader header;
+    public PetHeader Header;
 
     public PetFile(string filePath)
     {
@@ -18,7 +18,10 @@ public class PetFile
         try
         {
             var peHeader = new PeNet.PeFile(contents);
-            return peHeader.ImageSectionHeaders.First(h => h.Name == ".petprg").ToArray();
+            var section = peHeader.ImageSectionHeaders.First(h => h.Name == ".petprg");
+            var start = Convert.ToInt32(section.PointerToRawData);
+            var length = Convert.ToInt32(section.SizeOfRawData);
+            return contents.Skip(start).Take(length).ToArray();
         }
         catch
         {
@@ -32,13 +35,13 @@ public class PetFile
     {
         using (var reader = new BinaryReader(new MemoryStream(Contents, false)))
         {
-            header = new PetHeader();
-            var headerSize = Marshal.SizeOf(header);
+            Header = new PetHeader();
+            var headerSize = Marshal.SizeOf(Header);
             var headerPtr = Marshal.AllocHGlobal(headerSize);
             var headerData = reader.ReadBytes((int)headerSize);
 
             Marshal.Copy(headerData, 0, headerPtr, headerSize);
-            header = Marshal.PtrToStructure<PetHeader>(headerPtr);
+            Header = Marshal.PtrToStructure<PetHeader>(headerPtr);
             Marshal.FreeHGlobal(headerPtr);
         }
     }

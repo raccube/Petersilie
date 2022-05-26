@@ -17,7 +17,7 @@ public partial class Form1 : Form
         if (result == DialogResult.OK)
         {
             CurrentDocument = new PetFile(openFileDialog.FileName);
-            propertyGrid1.SelectedObject = CurrentDocument;
+            propertyGrid1.SelectedObject = CurrentDocument.Header.IndexTable[0];
         }
     }
 }
