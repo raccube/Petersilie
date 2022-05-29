@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Globalization;
+using System.Runtime.InteropServices;
 
 namespace Petersilie.NPet;
 
@@ -23,4 +24,6 @@ public struct PetHeader
     public Int32 NumBlocks;
     [field: MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
     public PetIndex[] IndexTable;
+
+    public string DisplayEditorVersion => string.Format(new CultureInfo("en-US"), "{0:0.00}", Convert.ToDouble(Editor) / 1000);
 }
