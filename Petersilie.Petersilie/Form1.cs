@@ -1,6 +1,6 @@
 namespace Petersilie.Petersilie;
 
-using global::Petersilie.Petersilie.Viewers;
+using Viewers;
 using NPet;
 
 public partial class Form1 : Form
