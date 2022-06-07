@@ -1,5 +1,8 @@
-﻿namespace Petersilie.NPet;
+﻿using System.Runtime.InteropServices;
 
+namespace Petersilie.NPet;
+
+[StructLayout(LayoutKind.Sequential, Pack = 4)]
 public struct PetProgram
 {
     public Int32 Parameters;

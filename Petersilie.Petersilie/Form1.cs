@@ -17,11 +17,15 @@ public partial class Form1 : Form
         var result = openFileDialog.ShowDialog(this);
         if (result == DialogResult.OK)
         {
+            UseWaitCursor = true;
+            
             CurrentDocument = new PetFile(openFileDialog.FileName);
             var baseName = Path.GetFileName(openFileDialog.FileName);
             Text = $"{baseName} - {Application.ProductName}";
             
             BuildTree(baseName);
+
+            UseWaitCursor = false;
         }
     }
 
