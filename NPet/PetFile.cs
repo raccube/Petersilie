@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
+using Petersilie.NPet.Readers;
 
 namespace Petersilie.NPet;
 
@@ -9,18 +10,21 @@ public class PetFile
     public PetHeader Header;
     public List<PetProgram> Programs;
     public List<Text> Texts;
-    public List<Picture> Pictures;
+    public Picture[] Pictures;
     public List<Map> Maps;
     public List<Sprite> Sprites;
+    private PictureReader _pictureReader;
 
     public PetFile(string filePath)
     {
         Contents = GetPetPrgSectionContents(File.ReadAllBytes(filePath));
         Programs = new List<PetProgram>();
         Texts = new List<Text>();
-        Pictures = new List<Picture>();
         Maps = new List<Map>();
         Sprites = new List<Sprite>();
+
+        _pictureReader = new PictureReader();
+        
         Parse();
     }
 
@@ -59,6 +63,12 @@ public class PetFile
         {
             var indexType = GetSectionType(petIndex.Name);
             if (indexType == null) continue;
+            
+            if (indexType == typeof(Picture))
+            {
+                Pictures = _pictureReader.ReadAll(reader, petIndex.NumItems);
+                continue;
+            }
 
             for (var i = 0; i < petIndex.NumItems; i++)
             {
@@ -69,12 +79,13 @@ public class PetFile
                 Marshal.Copy(indexData, 0, indexPtr, indexSize);
                 var index = Marshal.PtrToStructure(indexPtr, indexType);
                 Marshal.FreeHGlobal(indexPtr);
+                // Move Grab into here then do what Andy's thing does do deal with things of variable size
                 Grab(index);
             }
         }
     }
 
-    public void Grab(Object obj)
+    public void Grab(object obj)
     {
         if (obj is PetProgram program)
         {
@@ -83,10 +94,6 @@ public class PetFile
         else if (obj is Text text)
         {
             Texts.Add(text);
-        }
-        else if (obj is Picture picture)
-        {
-            Pictures.Add(picture);
         }
         else if (obj is Map map)
         {
